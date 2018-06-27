@@ -11,56 +11,33 @@ import {
   Text,
   View
 } from 'react-native';
-// import {Router, Scene} from "react-native-router-flux";
+import { Router, Scene, Actions } from "react-native-router-flux";
+
+import Home from "./components/index/home";
+import Personal from "./components/personal/personal";
 
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
-export default class Main extends Component{
+
+export default class Main extends React.Component {
+
+  
   render() {
     return (
-      // <Router>
-      //   <Scene>
-        <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!!q1123
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.jsd!!
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
-        // </Scene>
-      //</Router>
-
+      <Router>
+        <Scene key="root" hideNavBar>
+          <Scene key="tabbar" tabs tabBarStyle={{ backgroundColor: '#FFF', borderTopWidth: 1, borderTopColor: '#BBB' }}>
+            <Scene key="tab1" tabBarLabel="首页" >
+              <Scene key="home" component={Home} title="home" initial={true} />
+            </Scene>
+            <Scene key="tab2" tabBarLabel="个人中心">
+              <Scene key="personal" component={Personal} title="Personal" />
+            </Scene>
+          </Scene>
+        </Scene>
+      </Router>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection:"column",
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'pink',
-    height:600
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+

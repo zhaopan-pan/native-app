@@ -13,5 +13,10 @@ android:icon="@mipmap/jinghui"
 
 4、适配全面屏：
         1):把android文件夹下的build.gradle修改成    compileSdkVersion 24; buildToolsVersion "24.0.1"，以为只有sdk24以上才支持全面屏适配
-        2):在mainfest的activity中加上--> android:resizeableActivity="true" 
+        2):在mainfest的activity中加上--> android:resizeableActivity="true" ，
+
+
+
+5、react-native-router-flux使用：
+        hideNavBar：除非您添加hideNavBar，否则将会出现两个导航条。
 

@@ -1,5 +1,5 @@
 {
-  "name": "AwesomeProject",
+  "name": "native-app",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "react": "16.3.1",
-    "react-native": "0.55.4"
+    "react-native": "0.55.4",
+    "react-native-router-flux": "^4.0.0-beta.31"
   },
   "devDependencies": {
     "babel-jest": "23.2.0",
