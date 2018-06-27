@@ -1,4 +1,13 @@
+import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
-import App from './App';
+import Main from './app/main';
 
-AppRegistry.registerComponent('AwesomeProject', () => App);
+export default class Myapp extends Component {
+    render(){
+        return(
+            <Main/>
+        );
+    }
+}
+
+AppRegistry.registerComponent('AwesomeProject', () => Myapp);
