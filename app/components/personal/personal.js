@@ -19,10 +19,7 @@ import {
       return(
         <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!!q11
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.jsd!!!sssss
+        Welcome to 个人中心！
         </Text>
         <Text style={styles.instructions}>
           {instructions}
