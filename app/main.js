@@ -16,7 +16,7 @@ import { Router, Scene, Actions, Modal } from "react-native-router-flux";
 import Home from "./components/index/home";
 import Personal from "./components/personal/personal";
 
-// console.disableYellowBox = true    //关闭warning
+console.disableYellowBox = true    //关闭warning
 
 class TabIcon extends React.Component {
   componentDidMount(){
