@@ -10,6 +10,7 @@
     console.log(url);
     console.log(params);
     let paramsArr=[];
+    //拼接get请求参数
     if(params){
         for (const i in params) {
             if (args.hasOwnProperty(i)) {
@@ -27,7 +28,6 @@
         }
 
     }
-    // let data;
     fetch(url,{
         method:method,
       })
