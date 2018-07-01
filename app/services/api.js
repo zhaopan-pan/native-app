@@ -45,7 +45,11 @@ function api(url, params = {}, method, callback) {
             }
         }).catch((err) => {
             console.log(err);
-            callback(err);
+            if(err){
+                callback(err);
+            }else{
+                return;
+            }
         })
 }
 

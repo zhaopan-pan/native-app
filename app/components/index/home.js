@@ -18,8 +18,9 @@ export default class Home extends React.Component {
   constructor() {
     super(),
       this.state = {
-        listDate: {},
-        dom: ""
+        listDate: {},  //存放数据
+        dom: "",
+        refreshing: false,//当前的刷新状态
       }
   }
 
@@ -55,12 +56,15 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
+    this.getData();
+  }
+  getData = () => {
     //今日头条api+"?count="+10
     const url = "http://is.snssdk.com/api/news/feed/v51/"
     const _this = this;
     api(url,
       args = {
-        count: 5
+        count: 8
       },
       "GET",
       function (data) {
@@ -87,7 +91,7 @@ export default class Home extends React.Component {
     // var obj = eval('(' + (dataList.item.content) + ')');
     var item = JSON.parse(dataList.item.content);
     console.log(item);
-    console.log(item.middle_image);
+    // console.log(item.middle_image);
     // console.log((item.middle_image.urld)===undefined);
     //图片地址
     let imgUrl = "";
@@ -96,6 +100,7 @@ export default class Home extends React.Component {
     } else {
       imgUrl = "";
     }
+    //只显示新闻
     if (item.cell_type != 0) {
       return;
     } else {
@@ -103,6 +108,7 @@ export default class Home extends React.Component {
         activeOpacity={0.8}
       >
         <View style={styles.container_margin}>
+
           <View style={styles.item}>
             <View style={styles.leftTitle} onPress={() => Actions.personal()}>
               <Text style={styles.title}
@@ -123,9 +129,30 @@ export default class Home extends React.Component {
             </View>
           </View>
         </View>
-      </TouchableOpacity>)
+      </TouchableOpacity >)
     }
   }
+  /**
+   * 给列表设置id
+   * @param item
+   * @param index
+   */
+  _keyExtractor = (item, index) => {
+
+    Console.log("============");
+    Console.log(item);
+    Console.log(index);
+    item.id;
+  }
+
+  //下拉刷新
+  _onRefresh = () => {
+    this.setState({
+      refreshing: true
+    })
+    console.log("啦啦啦啦");
+  }
+  // _onRefresh = () => alert('onRefresh: nothing to refresh :P');
   render() {
     const { listDate } = this.state
     console.log(listDate);
@@ -136,15 +163,21 @@ export default class Home extends React.Component {
           ListHeaderComponent={this._header}
           ListFooterComponent={this._footer}
           // ItemSeparatorComponent={this._separator}
-          renderItem={this.getView}
+          renderItem={(item)=>this.getView(item)}
           // onViewableItemsChanged={(info) => {
           //   console.warn(info);
           // }}
-          data={listDate}>
+          // keyExtractor={(item,index)=>this._keyExtractor(item,index)}
+          keyExtractor={(item,index)=>console.log(item,index)}
+          data={listDate || []}
+          onRefresh={this._onRefresh}
+          refreshing={this.state.refreshing}
+        >
+
         </FlatList>
 
-
       </View>
+
     )
   }
 
@@ -160,17 +193,21 @@ const styles = StyleSheet.create({
   },
   //加边距
   container_margin: {
-    margin: 15,
-    flex: 1,
+    // margin: 15,
+    // flex: 1,
+    marginRight: 15,
+    marginLeft: 15,
+
   },
 
   //单个容器
   item: {
-    flex: 0.2,
+    // flex: 0.2,
     // backgroundColor: 'powderblue',
     flexDirection: "row",
     borderBottomColor: "#ccc",
     borderBottomWidth: 1,
+    // marginBottom
   },
   leftTitle: {
     flex: 0.65,
@@ -203,14 +240,14 @@ const styles = StyleSheet.create({
   imgView: {
     flex: 0.35,
     margin: 13,
-    marginRight:0,
+    marginRight: 0,
     // backgroundColor: "green",
     justifyContent: "center",
     alignItems: 'center',
   },
   img: {
     flex: 0.5,
-    width: 117,
+    width: 122,
     height: 83,
   },
   instructions: {

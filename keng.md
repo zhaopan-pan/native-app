@@ -1,4 +1,7 @@
-#########################
+###########################
+#######--运行问题--#########
+###########################
+
 1、初始化运行红屏错误 unable to load script from asset/index.android.bundle
 
    原因：assets中的这个index.android.bundle毫无疑问就是用来调用原生控件的js脚本，每次当你改变了 index.android.js，你都需要使用上面的代码片段，来及时的更新index.android.bundle，然后打包才可以把新的index.android.js应用上，所以当没有index.android.bundle文件时，RN是无法运行的
@@ -21,22 +24,33 @@ android:icon="@mipmap/jinghui"
         2):在mainfest的activity中加上--> android:resizeableActivity="true" ，
 
 
-##########################
-5、react-native-router-flux使用：
+
+###########################
+#######--组件使用--#########
+###########################
+
+1、react-native-router-flux使用：
         hideNavBar：  除非您添加hideNavBar，否则将会出现两个导航条。
               tabs:  定义TabBar场景容器以便子场景可以作为tabs展示。如果没有组件被定义，内置的TabBar 将作为容器。所有的         子场景都被包裹到自己的导航条中。
-        导航栏回底部： tabBarPosition="bottom"
+        导航栏回底部： 加属性tabBarPosition="bottom"
     activeTintColor:  选中颜色
           showLabel:  是否显示标签栏文字。
    animationEnabled： 是否显示切换动画
 
 
-##########################
-6、react-native-vector-icons ：安装完之后 运行命令：react-native link react-native-vector-icons,就可以愉快的去官网                                   https://oblador.github.io/react-native-vector-icons/  选用喜欢的图标了
+2、react-native-vector-icons ：安装完之后 运行命令：react-native link react-native-vector-icons,就可以愉快的去官网                                                                 https://oblador.github.io/react-native-vector-icons/  选用喜欢的图标了
 
 
+3、TouchableOpacity： 本组件用于封装视图，使其可以正确响应触摸操作
+                      activeOpacity ：操作透明度（0-1）
+                                    
+
+4、FlatList:列表组件，
+
 ##########################
-7、style样式问题：
+#####--style样式问题--####
+##########################
+1、：
       1)、ellipsizeMode：
                   ellipsizeMode的取值为enum(‘head’, ‘middle’, ‘tail’, ‘clip’) ,用来设定当文本显示不下全部内容时，文本应该如何被截断，需要注意的是，它必须和numberOfLines（文本显示的行数）搭配使用，才会发挥作用。
                   head：从文本的开头进行截断，并在文本的开头添加省略号，例如：…xyz。
