@@ -18,11 +18,18 @@ export default class Home extends React.Component {
   constructor() {
     super(),
       this.state = {
-        listDate: {},  //存放数据
+        listDate: [],  //存放数据
         dom: "",
         refreshing: false,//当前的刷新状态
+        index:"",         //保存索引
       }
   }
+  /**
+   * 给列表设置id
+   * @param item
+   * @param index
+   */
+  _keyExtractor = (item, index) => item.id;
 
   _header = () => {
     return (
@@ -73,10 +80,6 @@ export default class Home extends React.Component {
           const datas = data.data;
           _this.setState({
             listDate: datas
-          }, () => {
-
-
-
           })
 
         } else {
@@ -84,14 +87,27 @@ export default class Home extends React.Component {
         }
       }
     )
+
   }
 
+  // getState=(index,cb)=>{
+  //   if(this.state.index==index){
+  //     cb(true);
+  //   }else{
+  //   this.setState({
+  //     index:index
+  //   })
+  //   }
+  // }
   getView = (dataList) => {
+    console.log(dataList);
+    // let a=0;
+    console.log("第"+dataList.index);
+    // a++;
     //字符串转对象
     // var obj = eval('(' + (dataList.item.content) + ')');
     var item = JSON.parse(dataList.item.content);
     console.log(item);
-    // console.log(item.middle_image);
     // console.log((item.middle_image.urld)===undefined);
     //图片地址
     let imgUrl = "";
@@ -132,18 +148,8 @@ export default class Home extends React.Component {
       </TouchableOpacity >)
     }
   }
-  /**
-   * 给列表设置id
-   * @param item
-   * @param index
-   */
-  _keyExtractor = (item, index) => {
 
-    Console.log("============");
-    Console.log(item);
-    Console.log(index);
-    item.id;
-  }
+
 
   //下拉刷新
   _onRefresh = () => {
@@ -158,23 +164,24 @@ export default class Home extends React.Component {
     console.log(listDate);
     return (
       <View style={styles.container}>
-
+      {/* {listDate.length>0? */}
         <FlatList
+          data={listDate.length>0?listDate:[]}
+          keyExtractor={this._keyExtractor}
           ListHeaderComponent={this._header}
           ListFooterComponent={this._footer}
           // ItemSeparatorComponent={this._separator}
-          renderItem={(item)=>this.getView(item)}
+          renderItem={this.getView}
           // onViewableItemsChanged={(info) => {
           //   console.warn(info);
           // }}
-          // keyExtractor={(item,index)=>this._keyExtractor(item,index)}
-          keyExtractor={(item,index)=>console.log(item,index)}
-          data={listDate || []}
+          // keyExtractor={(item,index)=>console.log(item,index)}
           onRefresh={this._onRefresh}
           refreshing={this.state.refreshing}
         >
 
         </FlatList>
+         {/* :""} */}
 
       </View>
 
