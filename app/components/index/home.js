@@ -21,15 +21,10 @@ export default class Home extends React.Component {
         listDate: [],  //存放数据
         dom: "",
         refreshing: false,//当前的刷新状态
-        index:"",         //保存索引
+        index: "",         //保存索引
       }
   }
-  /**
-   * 给列表设置id
-   * @param item
-   * @param index
-   */
-  _keyExtractor = (item, index) => item.id;
+
 
   _header = () => {
     return (
@@ -64,25 +59,37 @@ export default class Home extends React.Component {
 
   componentDidMount() {
     this.getData();
+
+    console.log(this.a);
+
   }
-  getData = () => {
-    //今日头条api+"?count="+10
-    const url = "http://is.snssdk.com/api/news/feed/v51/"
+  a = (num) => {
+    return 12
+  }
+  getData = (num) => {
     const _this = this;
+    var timestamp=new Date().getTime();
+    //今日头条api+"?count="+10
+    const url = "http://is.snssdk.com/api/news/feed/v51/";
     api(url,
       args = {
-        count: 8
+        pageToken :2
+        // count: 8 + (num || 0)
       },
       "GET",
-      function (data) {
-        console.log(data);
-        if (data) {
-          const datas = data.data;
+      function (rs) {
+        console.log(rs);
+        if (rs.data) {
+          const datas = rs.data;
           _this.setState({
             listDate: datas
+          }, () => {
+            _this.setState({
+              refreshing: false
+            })
           })
-
         } else {
+          console.log(rs);
           return;
         }
       }
@@ -102,12 +109,12 @@ export default class Home extends React.Component {
   getView = (dataList) => {
     console.log(dataList);
     // let a=0;
-    console.log("第"+dataList.index);
+    // console.log("第"+dataList.index);
     // a++;
     //字符串转对象
     // var obj = eval('(' + (dataList.item.content) + ')');
     var item = JSON.parse(dataList.item.content);
-    console.log(item);
+    // console.log(item);
     // console.log((item.middle_image.urld)===undefined);
     //图片地址
     let imgUrl = "";
@@ -149,6 +156,13 @@ export default class Home extends React.Component {
     }
   }
 
+  /**
+   * 给列表设置id
+   * @param item
+   * @param index
+   */
+  _keyExtractor = (item, index) => index.toString();
+
 
 
   //下拉刷新
@@ -156,17 +170,25 @@ export default class Home extends React.Component {
     this.setState({
       refreshing: true
     })
+    this.getData()
     console.log("啦啦啦啦");
+  }
+  //上拉刷新
+  _onEndReached = () => {
+    console.log("上啦上啦！！");
+    this.setState({
+      refreshing: true
+    })
   }
   // _onRefresh = () => alert('onRefresh: nothing to refresh :P');
   render() {
     const { listDate } = this.state
-    console.log(listDate);
+    console.log(listDate.length);
     return (
       <View style={styles.container}>
-      {/* {listDate.length>0? */}
+        {/* {listDate.length>0? */}
         <FlatList
-          data={listDate.length>0?listDate:[]}
+          data={listDate.length > 0 ? listDate : ""}
           keyExtractor={this._keyExtractor}
           ListHeaderComponent={this._header}
           ListFooterComponent={this._footer}
@@ -176,12 +198,16 @@ export default class Home extends React.Component {
           //   console.warn(info);
           // }}
           // keyExtractor={(item,index)=>console.log(item,index)}
+          //下拉刷新
           onRefresh={this._onRefresh}
           refreshing={this.state.refreshing}
+          //上拉刷新
+          onEndReached={()=>this._onEndReached}
+          onEndReachedThreshold={0}
         >
 
         </FlatList>
-         {/* :""} */}
+        {/* :""} */}
 
       </View>
 

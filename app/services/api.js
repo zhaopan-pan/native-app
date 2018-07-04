@@ -37,7 +37,7 @@ function api(url, params = {}, method, callback) {
         //数据解析方式
         .then((response) => response.json())
         .then((rs) => {
-            console.log(typeof rs);
+            // console.log(typeof rs);
             if (rs !== null || rs !== {}) {
                 callback(rs);
             } else {

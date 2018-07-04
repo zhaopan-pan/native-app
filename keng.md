@@ -23,7 +23,15 @@ android:icon="@mipmap/jinghui"
         1):把android文件夹下的build.gradle修改成    compileSdkVersion 24; buildToolsVersion "24.0.1"，以为只有sdk24以上才支持全面屏适配
         2):在mainfest的activity中加上--> android:resizeableActivity="true" ，
 
+4、唯一key问题：keyExtractor: (item: ItemT, index: number) => string    
+               若不指定此函数，则默认抽取item.key作为key值。若item.key也不存在，则使用数组下标。
+               若出现：Warning: Failed child context type: Invalid child context `virtualizedCell.cellKey` of type `number` supplied to `CellRenderer`, expected `string`.
+               则需要写成 index.toString()
 
+作者：ZPengs
+链接：https://www.jianshu.com/p/98c8f2a970eb
+來源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
 
 ###########################
 #######--组件使用--#########
