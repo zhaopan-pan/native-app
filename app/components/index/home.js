@@ -107,14 +107,14 @@ export default class Home extends React.Component {
   //   }
   // }
   getView = (dataList) => {
-    console.log(dataList);
+    // console.log(dataList);
     // let a=0;
     // console.log("第"+dataList.index);
     // a++;
     //字符串转对象
     // var obj = eval('(' + (dataList.item.content) + ')');
     var item = JSON.parse(dataList.item.content);
-    // console.log(item);
+    console.log(item);
     // console.log((item.middle_image.urld)===undefined);
     //图片地址
     let imgUrl = "";
@@ -129,11 +129,13 @@ export default class Home extends React.Component {
     } else {
       return (<TouchableOpacity
         activeOpacity={0.8}
+        onPress={() => Actions.ArticleDetail(item.article_url)}
       >
         <View style={styles.container_margin}>
 
           <View style={styles.item}>
-            <View style={styles.leftTitle} onPress={() => Actions.personal()}>
+            <View style={styles.leftTitle}>
+            {/* <View style={styles.leftTitle} onPress={() => console.log("摸摸摸")}> */}
               <Text style={styles.title}
                 ellipsizeMode='tail'
                 numberOfLines={2}

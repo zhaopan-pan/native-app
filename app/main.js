@@ -15,23 +15,24 @@ import Icon from 'react-native-vector-icons/Octicons';
 import { Router, Scene, Actions, Modal } from "react-native-router-flux";
 import Home from "./components/index/home";
 import Personal from "./components/personal/personal";
+import ArticleDetail from "./components/index/articleDetail";
 
 console.disableYellowBox = true    //关闭warning
 
 class TabIcon extends React.Component {
-  componentDidMount(){
+  componentDidMount() {
     // console.log(this.props);
   }
   render() {
-      return (
-          <View style={{justifyContent: 'center', alignItems: 'center'}}>
-              <Icon name={this.props.tabIcon} size={20} color={this.props.focused ? "#FFDB42" : '#BBB'} />
-              <Text style={{color: this.props.focused ? '#FFDB42' : '#BBB', marginTop: 5, fontSize:15}}>
-              {this.props.tabBarLabel}
-              </Text>
-          </View>
-          
-      )
+    return (
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <Icon name={this.props.tabIcon} size={20} color={this.props.focused ? "#FFDB42" : '#BBB'} />
+        <Text style={{ color: this.props.focused ? '#FFDB42' : '#BBB', marginTop: 5, fontSize: 15 }}>
+          {this.props.tabBarLabel}
+        </Text>
+      </View>
+
+    )
   }
 }
 export default class Main extends React.Component {
@@ -56,11 +57,17 @@ export default class Main extends React.Component {
               showLabel={false}
             >
 
-              <Scene key="tab1" tabBarLabel="首页" icon={TabIcon} tabIcon="home" 
-              activeTintColor={'red'}
+              <Scene key="tab1" tabBarLabel="首页" icon={TabIcon} tabIcon="home"
+                activeTintColor={'red'}
 
               >
-
+                <Scene
+                  key="ArticleDetail"
+                  component={ArticleDetail}
+                  title="文章详情"
+                  hideTabBar
+                  swipeEnabled={false}
+                />
                 <Scene
                   key="home"
                   component={Home}
@@ -78,6 +85,8 @@ export default class Main extends React.Component {
               </Scene>
             </Scene>
           </Scene>
+
+
         </Modal>
       </Router>
     );
@@ -92,7 +101,7 @@ const mainStyle = StyleSheet.create({
     height: 55,
 
   },
-  tabHome:{
+  tabHome: {
     backgroundColor: 'black',
   }
 })
