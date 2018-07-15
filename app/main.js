@@ -71,16 +71,21 @@ export default class Main extends React.Component {
                 <Scene
                   key="home"
                   component={Home}
-                  title="home"
+                  title="新闻列表"
                   initial={true}
                 />
               </Scene>
               {/* TabIcon */}
-              <Scene key="tab2" tabBarLabel="个人中心" icon={TabIcon} tabIcon="person">
+              <Scene key="tab2"
+                tabBarLabel="个人中心"
+                icon={TabIcon}
+                tabIcon="person">
                 <Scene
                   key="personal"
                   component={Personal}
-                  title="personal"
+                  // title="个人中心"
+                  navigationBarStyle={mainStyle.tabHome}
+
                 />
               </Scene>
             </Scene>
@@ -102,7 +107,8 @@ const mainStyle = StyleSheet.create({
 
   },
   tabHome: {
-    backgroundColor: 'black',
+    backgroundColor: '#514a4a',
+    display: "none"
   }
 })
 

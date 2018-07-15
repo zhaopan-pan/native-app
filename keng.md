@@ -43,7 +43,8 @@ android:icon="@mipmap/jinghui"
         导航栏回底部： 加属性tabBarPosition="bottom"
     activeTintColor:  选中颜色
           showLabel:  是否显示标签栏文字。
-   animationEnabled： 是否显示切换动画
+   animationEnabled： 是否显示切换动画;
+  navigationBarStyle:  导航栏样式
 
 
 2、react-native-vector-icons ：安装完之后 运行命令：react-native link react-native-vector-icons,就可以愉快的去官网                                                                 https://oblador.github.io/react-native-vector-icons/  选用喜欢的图标了
