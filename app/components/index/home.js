@@ -114,7 +114,7 @@ export default class Home extends React.Component {
     //字符串转对象
     // var obj = eval('(' + (dataList.item.content) + ')');
     var item = JSON.parse(dataList.item.content);
-    console.log(item);
+    // console.log(item);
     // console.log((item.middle_image.urld)===undefined);
     //图片地址
     let imgUrl = "";

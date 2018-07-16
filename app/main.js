@@ -14,8 +14,9 @@ import {
 import Icon from 'react-native-vector-icons/Octicons';
 import { Router, Scene, Actions, Modal } from "react-native-router-flux";
 import Home from "./components/index/home";
-import Personal from "./components/personal/personal";
-import ArticleDetail from "./components/index/articleDetail";
+import Personal from "./components/personal/personal";        //个人中心
+import Setting from "./components/personal/setting/setting";  //设置
+import ArticleDetail from "./components/index/articleDetail"; //文章详情
 
 console.disableYellowBox = true    //关闭warning
 
@@ -59,7 +60,6 @@ export default class Main extends React.Component {
 
               <Scene key="tab1" tabBarLabel="首页" icon={TabIcon} tabIcon="home"
                 activeTintColor={'red'}
-
               >
                 <Scene
                   key="ArticleDetail"
@@ -85,7 +85,16 @@ export default class Main extends React.Component {
                   component={Personal}
                   // title="个人中心"
                   navigationBarStyle={mainStyle.tabHome}
+                />
+                <Scene
+                  key="Setting"
+                  component={Setting}
+                  title="设置"
+                  hideTabBar
+                  swipeEnabled={false}
+                  navigationBarStyle={mainStyle.settingTab}
 
+                  // navTransparent={true}
                 />
               </Scene>
             </Scene>
@@ -109,6 +118,10 @@ const mainStyle = StyleSheet.create({
   tabHome: {
     backgroundColor: '#514a4a',
     display: "none"
+  },
+  settingTab: {
+    backgroundColor: 'white',
+    shadowColor:"white"
   }
 })
 

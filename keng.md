@@ -52,9 +52,31 @@ android:icon="@mipmap/jinghui"
 
 3、TouchableOpacity： 本组件用于封装视图，使其可以正确响应触摸操作
                       activeOpacity ：操作透明度（0-1）
-                                    
+                      
 
+##########################
 4、FlatList:列表组件，
+
+
+##########################
+5、react-native-image-picker使用
+android配置：
+
+1，在android/settings.gradle文件中添加如下代码：
+include ':react-native-image-picker'
+project(':react-native-image-picker').projectDir = new File(settingsDir, '../node_modules/react-native-image-picker/android')
+2，在android/app/build.gradle文件的dependencies中添加如下代码：
+compile project(':react-native-image-picker')
+3，在AndroidManifest.xml文件中添加权限：
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+4，最后在MainApplication.Java文件中添加如下代码：
+import com.imagepicker.ImagePickerPackage;
+new ImagePickerPackage()
+##########################
+
+   
+
 
 ##########################
 #####--style样式问题--####
