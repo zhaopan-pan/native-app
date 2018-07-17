@@ -14,10 +14,11 @@ import {
 import Icon from 'react-native-vector-icons/Octicons';
 import { Router, Scene, Actions, Modal } from "react-native-router-flux";
 import Home from "./components/index/home";
+
+import ArticleDetail from "./components/index/articleDetail"; //文章详情
 import Personal from "./components/personal/personal";        //个人中心
 import Setting from "./components/personal/setting/setting";  //设置
-import ArticleDetail from "./components/index/articleDetail"; //文章详情
-
+import About from "./components/personal/setting/about/about";        //about
 console.disableYellowBox = true    //关闭warning
 
 class TabIcon extends React.Component {
@@ -73,6 +74,9 @@ export default class Main extends React.Component {
                   component={Home}
                   title="新闻列表"
                   initial={true}
+                  navigationBarStyle={mainStyle.settingTab}
+
+
                 />
               </Scene>
               {/* TabIcon */}
@@ -92,9 +96,20 @@ export default class Main extends React.Component {
                   title="设置"
                   hideTabBar
                   swipeEnabled={false}
-                  navigationBarStyle={mainStyle.settingTab}
-
                   // navTransparent={true}
+                  navigationBarStyle={mainStyle.settingTab}
+                  titleStyle={mainStyle.settingTitleStyle}
+
+                />
+                <Scene
+                  key="About"
+                  component={About}
+                  title="关于"
+                  hideTabBar
+                  swipeEnabled={false}
+                  // navTransparent={true}
+                  navigationBarStyle={mainStyle.settingTab}
+                  // titleStyle={mainStyle.settingTitleStyle}
                 />
               </Scene>
             </Scene>
@@ -121,7 +136,20 @@ const mainStyle = StyleSheet.create({
   },
   settingTab: {
     backgroundColor: 'white',
-    shadowColor:"white"
+ 
+    elevation: 0,
+    // shadowOffset: {width: 10, height: 10},
+    // shadowColor: 'red',
+    // shadowOpacity: 1,
+    // shadowRadius: 50
+  },
+  settingTitleStyle:{
+    textAlign:"center",
+    // textAlignVertical: 'center',
+    width:"73%",
+    color:"black",
+    fontSize:20,
+    fontWeight:"normal"
   }
 })
 

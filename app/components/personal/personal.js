@@ -103,7 +103,7 @@ export default class Personal extends React.Component {
                 style={styles.img} />
               {/* </View> */}
             </TouchableOpacity>
-            <Text style={styles.usename}>赵攀</Text>
+            <Text style={styles.usename}>zp</Text>
           </View>
           <View>
           </View>
