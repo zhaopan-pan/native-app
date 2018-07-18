@@ -89,3 +89,7 @@ new ImagePickerPackage()
                   middle ：从文本的中间进行截断，并在文本的中间添加省略号，例如：ab…yz。
                   tail：从文本的末尾进行截断，并在文本的末尾添加省略号，例如：abcd…。
                   clip ：文本的末尾显示不下的内容会被截断，并且不添加省略号，clip只适用于iOS平台。
+
+
+###########################
+react-native-splash-screen
