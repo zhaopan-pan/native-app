@@ -10,10 +10,10 @@ import {
   StyleSheet,
   Text,
   View,
+  StatusBar
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Octicons';
 import { Router, Scene, Actions, Modal } from "react-native-router-flux";
-import SplashScreen from 'react-native-splash-screen'
 import StartPage from "./start/startPage";
 
 import Home from "./components/index/home";
@@ -28,12 +28,7 @@ class TabIcon extends React.Component {
   componentDidMount() {
     // console.log(this.props);
   }
-  componentDidMount() {
-    // do anything while splash screen keeps, use await to wait for an async task.
-   setTimeout(() => {
-     SplashScreen.hide();
-  }, 1000);  // 这里可以自定义来设置显示时间,让其暂停1秒后,再跳转到主页面
-}
+
   render() {
     return (
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -47,19 +42,20 @@ class TabIcon extends React.Component {
   }
 }
 export default class Main extends React.Component {
-  
+
 
   componentDidMount() {
     console.log("来来来！");
   }
   render() {
     return (
+
       <Router>
         <Modal>
           <Scene
             key="root"
             hideNavBar
-            // component={StartPage}
+          // component={StartPage}
           >
             <Scene
               key="tabbar"
@@ -70,7 +66,11 @@ export default class Main extends React.Component {
               showLabel={false}
             >
 
-              <Scene key="tab1" tabBarLabel="首页" icon={TabIcon} tabIcon="home"
+              <Scene
+                key="tab1"
+                tabBarLabel="首页"
+                icon={TabIcon}
+                tabIcon="home"
                 activeTintColor={'red'}
               >
                 <Scene
@@ -80,21 +80,23 @@ export default class Main extends React.Component {
                   hideTabBar
                   swipeEnabled={false}
                 />
+
                 <Scene
                   key="home"
                   component={Home}
                   title="新闻列表"
                   initial={true}
                   navigationBarStyle={mainStyle.newsListTab}
-
-
                 />
+
               </Scene>
+
               {/* TabIcon */}
               <Scene key="tab2"
                 tabBarLabel="个人中心"
                 icon={TabIcon}
-                tabIcon="person">
+                tabIcon="person"
+              >
                 <Scene
                   key="personal"
                   component={Personal}
@@ -120,7 +122,7 @@ export default class Main extends React.Component {
                   swipeEnabled={false}
                   // navTransparent={true}
                   navigationBarStyle={mainStyle.settingTab}
-                  // titleStyle={mainStyle.settingTitleStyle}
+                // titleStyle={mainStyle.settingTitleStyle}
                 />
               </Scene>
             </Scene>
@@ -155,13 +157,13 @@ const mainStyle = StyleSheet.create({
     // shadowOpacity: 1,
     // shadowRadius: 50
   },
-  settingTitleStyle:{
-    textAlign:"center",
+  settingTitleStyle: {
+    textAlign: "center",
     // textAlignVertical: 'center',
-    width:"73%",
-    color:"black",
-    fontSize:20,
-    fontWeight:"normal"
+    width: "73%",
+    color: "black",
+    fontSize: 20,
+    fontWeight: "normal"
   }
 })
 

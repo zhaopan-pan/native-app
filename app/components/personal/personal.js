@@ -6,7 +6,8 @@ import {
   View,
   Image,
   TouchableNativeFeedback,
-  TouchableOpacity
+  TouchableOpacity,
+  StatusBar
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Octicons';
 import ImagePicker from 'react-native-image-picker';
@@ -29,7 +30,7 @@ export default class Personal extends React.Component {
     }
   }
   //选择图片
-  selectPhotoTapped=()=>{
+  selectPhotoTapped = () => {
     const options = {
       title: '选择图片',
       cancelButtonTitle: '取消',
@@ -50,8 +51,8 @@ export default class Personal extends React.Component {
       noData: false,
       storageOptions: {
         skipBackup: true,
-        path:'images'
-    }
+        path: 'images'
+      }
     };
 
     ImagePicker.showImagePicker(options, (response) => {
@@ -91,6 +92,11 @@ export default class Personal extends React.Component {
   render() {
     return (
       <View style={styles.contains}>
+        <StatusBar
+          backgroundColor="#514a4a"
+          barStyle="dark-content"
+        // hidden={true}/
+        />
         <View style={styles.userInfo}>
           <View style={styles.personal_img}>
             <TouchableOpacity
@@ -99,7 +105,7 @@ export default class Personal extends React.Component {
             >
               {/* <View> */}
               <Image
-                source={this.state.avatarSource?this.state.avatarSource:require('./img/kobe.jpg')}
+                source={this.state.avatarSource ? this.state.avatarSource : require('./img/kobe.jpg')}
                 style={styles.img} />
               {/* </View> */}
             </TouchableOpacity>
@@ -111,7 +117,7 @@ export default class Personal extends React.Component {
         {/* <View style={styles.container_margin}> */}
 
         <TouchableNativeFeedback
-        onPress={() => Actions.Setting()}>
+          onPress={() => Actions.Setting()}>
           <View style={styles.handle}>
             <View style={styles.handle_icon}>
               <Icon name={"gear"} size={20} color={'#BBB'} />

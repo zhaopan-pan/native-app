@@ -6,7 +6,7 @@ import {
   View,
   Image,
   TouchableNativeFeedback,
-  TouchableOpacity
+  StatusBar
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Octicons';
 import { Actions } from "react-native-router-flux";
@@ -20,8 +20,13 @@ export default class Setting extends React.Component {
   render() {
     return (
       <View style={styles.contains}>
+        <StatusBar
+          backgroundColor="white"
+          barStyle="dark-content"
+        // hidden={true}/
+        />
         <TouchableNativeFeedback
-        onPress={() => Actions.About()}
+          onPress={() => Actions.About()}
         >
           <View style={styles.handle}>
             <Text style={styles.setting}>about</Text>
