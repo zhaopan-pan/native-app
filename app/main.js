@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Octicons';
 import { Router, Scene, Actions, Modal } from "react-native-router-flux";
-
+import SplashScreen from 'react-native-splash-screen'
 import StartPage from "./start/startPage";
 
 import Home from "./components/index/home";
@@ -28,6 +28,12 @@ class TabIcon extends React.Component {
   componentDidMount() {
     // console.log(this.props);
   }
+  componentDidMount() {
+    // do anything while splash screen keeps, use await to wait for an async task.
+   setTimeout(() => {
+     SplashScreen.hide();
+  }, 1000);  // 这里可以自定义来设置显示时间,让其暂停1秒后,再跳转到主页面
+}
   render() {
     return (
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -53,7 +59,7 @@ export default class Main extends React.Component {
           <Scene
             key="root"
             hideNavBar
-            component={StartPage}
+            // component={StartPage}
           >
             <Scene
               key="tabbar"
