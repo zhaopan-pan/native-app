@@ -201,7 +201,7 @@ export default class Home extends React.Component {
         <FlatList
           data={listDate.length > 0 ? listDate : ""}
           keyExtractor={this._keyExtractor}
-          ListHeaderComponent={this._header}
+          // ListHeaderComponent={this._header}
           ListFooterComponent={this._footer}
           // ItemSeparatorComponent={this._separator}
           renderItem={this.getView}

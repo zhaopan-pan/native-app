@@ -46,7 +46,7 @@ android:icon="@mipmap/jinghui"
    animationEnabled： 是否显示切换动画;
   navigationBarStyle:  导航栏样式
            elevation:  Android SDK 为了给视图增加阴影而为我们提供了 elevation 属性，顾名思义就是 “仰角”
-
+       navTransparent：导航栏是否透明
 
 2、react-native-vector-icons ：安装完之后 运行命令：react-native link react-native-vector-icons,就可以愉快的去官网                                                                 https://oblador.github.io/react-native-vector-icons/  选用喜欢的图标了
 

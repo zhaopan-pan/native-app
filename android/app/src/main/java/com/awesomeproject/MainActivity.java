@@ -18,7 +18,8 @@ public class MainActivity extends ReactActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SplashScreen.show(this,false);   //add
+        //2-args 是否全屏  boolean
+        // SplashScreen.show(this,false);
         super.onCreate(savedInstanceState);
     }
 
