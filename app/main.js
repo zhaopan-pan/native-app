@@ -15,11 +15,11 @@ import Icon from 'react-native-vector-icons/Octicons';
 import { Router, Scene, Actions, Modal } from "react-native-router-flux";
 import SplashScreen from 'react-native-splash-screen'
 import StartPage from "./start/startPage";
-import Home from '~/index/home';
-import ArticleDetail from "./components/index/articleDetail"; //文章详情
-import Personal from "./components/personal/personal";        //个人中心
-import Setting from "./components/personal/setting/setting";  //设置
-import About from "./components/personal/setting/about/about";        //about
+import Home from '@/index/home';
+import ArticleDetail from "@/index/articleDetail"; //文章详情
+import Personal from "@/personal/personal";        //个人中心
+import Setting from "@/personal/setting/setting";  //设置
+import About from "@/personal/setting/about/about";        //about
 
 console.disableYellowBox = true    //关闭warning
 

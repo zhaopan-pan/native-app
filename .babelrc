@@ -5,21 +5,9 @@
   "plugins": [
     ["babel-plugin-root-import", {
       "paths": [{
-        "rootPathPrefix": "~",
-        "rootPathSuffix": "app/components"
+        "rootPathPrefix": "@",
+        "rootPathSuffix": "components"
       }]
     }]
   ],
-  "env": { 
-    "production": {
-      "plugins": [
-        ["babel-plugin-root-import", {
-          "paths": [{
-            "rootPathPrefix": "~",
-            "rootPathSuffix": "app"
-          }]
-        }]
-      ]
-    }
-  }
 }
