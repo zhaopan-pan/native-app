@@ -29,6 +29,11 @@ export default class Personal extends React.Component {
       videoSource: null
     }
   }
+
+componentDidMount(){
+  console.log("个人中心");
+}
+
   //选择图片
   selectPhotoTapped = () => {
     const options = {

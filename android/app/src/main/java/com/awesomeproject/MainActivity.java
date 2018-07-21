@@ -19,7 +19,8 @@ public class MainActivity extends ReactActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //2-args 是否全屏  boolean
-        // SplashScreen.show(this,false);
+        // SplashScreen.show(this);
+        SplashScreen.show(this, R.style.SplashScreenTheme);
         super.onCreate(savedInstanceState);
     }
 

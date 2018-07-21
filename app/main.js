@@ -20,19 +20,14 @@ import ArticleDetail from "@/index/articleDetail"; //文章详情
 import Personal from "@/personal/personal";        //个人中心
 import Setting from "@/personal/setting/setting";  //设置
 import About from "@/personal/setting/about/about";        //about
+import styles from './components/personal/styles';
 
 console.disableYellowBox = true    //关闭warning
 
+//导航栏点击事件
 class TabIcon extends React.Component {
-  componentDidMount() {
-    // console.log(this.props);
-  }
-  componentDidMount() {
-    // do anything while splash screen keeps, use await to wait for an async task.
-    setTimeout(() => {
-      SplashScreen.hide();
-    }, 1000);  // 这里可以自定义来设置显示时间,让其暂停1秒后,再跳转到主页面
-  }
+
+
   render() {
     return (
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -45,8 +40,27 @@ class TabIcon extends React.Component {
     )
   }
 }
+class Search extends React.Component {
+  componentDidMount() {
+    console.log("123456");
+  }
+  render() {
+    return (
+      <View style={mainStyle.search}>
+      <Text style={mainStyle.settingTitleStyle}>123456</Text>
+      </View>
+    )
+  }
+}
 export default class Main extends React.Component {
 
+
+  componentDidMount() {
+    // do anything while splash screen keeps, use await to wait for an async task.
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 1000);  // 这里可以自定义来设置显示时间,让其暂停1秒后,再跳转到主页面
+  }
 
   componentDidMount() {
     console.log("来来来！");
@@ -71,13 +85,14 @@ export default class Main extends React.Component {
 
               <Scene key="tab1" tabBarLabel="首页" icon={TabIcon} tabIcon="home"
                 activeTintColor={'red'}
+
               >
                 <Scene
                   key="home"
                   component={Home}
                   // title="新闻列表"
-                  renderTitle={Setting}
                   initial={true}
+                  renderLeftButton={Search}
                   navigationBarStyle={mainStyle.newsListTab}
                   navTransparent={false}    //导航栏是否透明
                 />
@@ -133,6 +148,13 @@ export default class Main extends React.Component {
 }
 
 const mainStyle = StyleSheet.create({
+  search:{
+    flex:1,
+    flexDirection:"column",
+    justifyContent:"flex-start",
+    backgroundColor:"red"
+
+  },
   tabBarStyle: {
     backgroundColor: '#FFF',
     borderTopColor: '#BBB',

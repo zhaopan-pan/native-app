@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary_dark">#656460</color>  //此处填入自己需要设置的颜色
+    <color name="primary_dark">#000000</color>  //此处填入自己需要设置的颜色
+    <color name="status_bar_color">#000000</color>  //状态栏颜色  黑：	#000000 白：#ffffff
 </resources>
