@@ -76,7 +76,8 @@ import com.imagepicker.ImagePickerPackage;
 new ImagePickerPackage()
 ##########################
 
-   
+###########################
+react-native-splash-screen:启动图设置  
 
 
 ##########################
@@ -91,5 +92,3 @@ new ImagePickerPackage()
                   clip ：文本的末尾显示不下的内容会被截断，并且不添加省略号，clip只适用于iOS平台。
 
 
-###########################
-react-native-splash-screen
