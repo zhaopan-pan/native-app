@@ -10,17 +10,18 @@ import {
   StyleSheet,
   Text,
   View,
+  TextInput
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Octicons';
 import { Router, Scene, Actions, Modal } from "react-native-router-flux";
-import SplashScreen from 'react-native-splash-screen'
-import StartPage from "./start/startPage";
 import Home from '@/index/home';
-import ArticleDetail from "@/index/articleDetail"; //文章详情
+import ArticleDetail from "@/index/articleDetail"; //articleDetail
 import Personal from "@/personal/personal";        //个人中心
 import Setting from "@/personal/setting/setting";  //设置
 import About from "@/personal/setting/about/about";        //about
+import {search} from "@//util/search/search";        //search
 import styles from './components/personal/styles';
+import { white } from 'ansi-colors';
 
 console.disableYellowBox = true    //关闭warning
 
@@ -31,8 +32,8 @@ class TabIcon extends React.Component {
   render() {
     return (
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-        <Icon name={this.props.tabIcon} size={20} color={this.props.focused ? "#FFDB42" : '#BBB'} />
-        <Text style={{ color: this.props.focused ? '#FFDB42' : '#BBB', marginTop: 5, fontSize: 15 }}>
+        <Icon name={this.props.tabIcon} size={20} color={this.props.focused ? "#a55858" : '#BBB'} />
+        <Text style={{ color: this.props.focused ? '#a55858' : '#BBB', marginTop: 5, fontSize: 15 }}>
           {this.props.tabBarLabel}
         </Text>
       </View>
@@ -40,30 +41,12 @@ class TabIcon extends React.Component {
     )
   }
 }
-class Search extends React.Component {
-  componentDidMount() {
-    console.log("123456");
-  }
-  render() {
-    return (
-      <View style={mainStyle.search}>
-      <Text style={mainStyle.settingTitleStyle}>123456</Text>
-      </View>
-    )
-  }
-}
 export default class Main extends React.Component {
 
 
   componentDidMount() {
-    // do anything while splash screen keeps, use await to wait for an async task.
-    setTimeout(() => {
-      SplashScreen.hide();
-    }, 1000);  // 这里可以自定义来设置显示时间,让其暂停1秒后,再跳转到主页面
-  }
-
-  componentDidMount() {
     console.log("来来来！");
+
   }
   render() {
     return (
@@ -92,7 +75,7 @@ export default class Main extends React.Component {
                   component={Home}
                   // title="新闻列表"
                   initial={true}
-                  renderLeftButton={Search}
+                  renderTitle={search}
                   navigationBarStyle={mainStyle.newsListTab}
                   navTransparent={false}    //导航栏是否透明
                 />
@@ -106,7 +89,7 @@ export default class Main extends React.Component {
               </Scene>
               {/* TabIcon */}
               <Scene key="tab2"
-                tabBarLabel="个人中心"
+                tabBarLabel="我的"
                 icon={TabIcon}
                 tabIcon="person">
                 <Scene
@@ -148,13 +131,6 @@ export default class Main extends React.Component {
 }
 
 const mainStyle = StyleSheet.create({
-  search:{
-    flex:1,
-    flexDirection:"column",
-    justifyContent:"flex-start",
-    backgroundColor:"red"
-
-  },
   tabBarStyle: {
     backgroundColor: '#FFF',
     borderTopColor: '#BBB',
@@ -169,7 +145,7 @@ const mainStyle = StyleSheet.create({
   newsListTab: {
     backgroundColor: 'white',
     borderBottomColor: '#BBB',
-    borderBottomWidth: 1,
+    // borderBottomWidth: 1,
     elevation: 0,
     // shadowOffset: {width: 10, height: 10},
     // shadowColor: 'red',

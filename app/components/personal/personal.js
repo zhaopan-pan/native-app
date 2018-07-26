@@ -97,11 +97,11 @@ componentDidMount(){
   render() {
     return (
       <View style={styles.contains}>
-        <StatusBar
+        {/* <StatusBar
           backgroundColor="#514a4a"
           barStyle="dark-content"
         // hidden={true}/
-        />
+        /> */}
         <View style={styles.userInfo}>
           <View style={styles.personal_img}>
             <TouchableOpacity

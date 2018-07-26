@@ -10,7 +10,7 @@ export default class Myapp extends Component {
         // do anything while splash screen keeps, use await to wait for an async task.
        setTimeout(() => {
          SplashScreen.hide();
-      }, 2000);  // 这里可以自定义来设置显示时间,让其暂停1秒后,再跳转到主页面
+      }, 1500);  // 这里可以自定义来设置显示时间,让其暂停1秒后,再跳转到主页面
     }
 
 

@@ -190,13 +190,13 @@ export default class Home extends React.Component {
     console.log(listDate.length);
     return (
       <View style={styles.container}>
-        <StatusBar
+        {/* <StatusBar
           backgroundColor="white"
           barStyle="dark-content"
           StatusBarAnimation={"fade"}
           // translucent={true}
         // hidden={true}/
-        />
+        /> */}
         {/* {listDate.length>0? */}
         <FlatList
           data={listDate.length > 0 ? listDate : ""}
