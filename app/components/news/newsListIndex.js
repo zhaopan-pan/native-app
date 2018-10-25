@@ -9,14 +9,14 @@ import {
   StatusBar
 } from 'react-native';
 import api from "../../services/api"
-import { Router, Scene, Actions } from "react-native-router-flux";
+import {Actions } from "react-native-router-flux";
 import { green } from 'ansi-colors';
 import styles from "./styles"
 
 
 
 
-export default class Home extends React.Component {
+export default class NewsListIndex extends React.Component {
   constructor() {
     super(),
       this.state = {
@@ -24,6 +24,7 @@ export default class Home extends React.Component {
         dom: "",
         refreshing: false,//当前的刷新状态
         index: "",         //保存索引
+        pageNumAdd: 0,     //上拉刷新增加条数
       }
   }
 
@@ -59,44 +60,46 @@ export default class Home extends React.Component {
     return <View style={{ height: 2, backgroundColor: 'yellow' }} />;
   }
 
+  componentWillMount(){
+ 
+  }
+
+
   componentDidMount() {
     this.getData();
 
-    console.log(this.a);
+  }
 
-  }
-  a = (num) => {
-    return 12
-  }
-  getData = (num) => {
+  getData = (pageNum) => {
+    console.log("==========");
+    console.log(pageNum);
     const _this = this;
     var timestamp = new Date().getTime();
     //今日头条api+"?count="+10
-    const url = "http://is.snssdk.com/api/news/feed/v51/";
-    api(url,
-      args = {
-        pageToken: 2
-        // count: 8 + (num || 0)
+    const url = "http://is.snssdk.com/api/news/feed/v75/";
+    api({
+      url: url,
+      resParameters: {
+        // pageToken: 1
+        count: pageNum ? pageNum : 10
+        // count: 10,
       },
-      "GET",
-      function (rs) {
+    })
+      .then(function (rs) {
         console.log(rs);
         if (rs.data) {
           const datas = rs.data;
           _this.setState({
-            listDate: datas
-          }, () => {
-            _this.setState({
-              refreshing: false
-            })
+            listDate: _this.state.listDate.concat(datas),
+            refreshing: false
           })
         } else {
           console.log(rs);
           return;
         }
-      }
-    )
-
+      }).catch(function (err) {
+        console.log(err);
+      });
   }
 
   // getState=(index,cb)=>{
@@ -109,7 +112,6 @@ export default class Home extends React.Component {
   //   }
   // }
   getView = (dataList) => {
-    // console.log(dataList);
     // let a=0;
     // console.log("第"+dataList.index);
     // a++;
@@ -172,16 +174,26 @@ export default class Home extends React.Component {
   //下拉刷新
   _onRefresh = () => {
     this.setState({
-      refreshing: true
+      refreshing: true,
+      listDate:[],//清空数据
+      pageNumAdd:0
     })
-    this.getData()
     console.log("啦啦啦啦");
+    this.state.pageNumAdd = 5;
+    this.getData();
   }
+
+
   //上拉刷新
   _onEndReached = () => {
     console.log("上啦上啦！！");
     this.setState({
       refreshing: true
+    });
+    this.setState({
+      pageNumAdd: this.state.pageNumAdd + 5,
+    }, () => {
+      this.getData(this.state.pageNumAdd);
     })
   }
   // _onRefresh = () => alert('onRefresh: nothing to refresh :P');
@@ -202,7 +214,7 @@ export default class Home extends React.Component {
           data={listDate.length > 0 ? listDate : ""}
           keyExtractor={this._keyExtractor}
           // ListHeaderComponent={this._header}
-          ListFooterComponent={this._footer}
+          // ListFooterComponent={this._footer}
           // ItemSeparatorComponent={this._separator}
           renderItem={this.getView}
           // onViewableItemsChanged={(info) => {
@@ -213,8 +225,8 @@ export default class Home extends React.Component {
           onRefresh={this._onRefresh}
           refreshing={this.state.refreshing}
           //上拉刷新
-          onEndReached={() => this._onEndReached}
-          onEndReachedThreshold={0}
+          onEndReached={this._onEndReached}
+          onEndReachedThreshold={0.1}
         >
 
         </FlatList>

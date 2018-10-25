@@ -14,12 +14,12 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Octicons';
 import { Router, Scene, Actions, Modal } from "react-native-router-flux";
-import Home from '@/index/home';
-import ArticleDetail from "@/index/articleDetail"; //articleDetail
+import NewsListIndex from '@/news/newsListIndex';
+import ArticleDetail from "@/news/articleDetail"; //articleDetail
 import Personal from "@/personal/personal";        //个人中心
 import Setting from "@/personal/setting/setting";  //设置
 import About from "@/personal/setting/about/about";        //about
-import {search} from "@//util/search/search";        //search
+import { search } from "@//util/search/search";        //search
 import styles from './components/personal/styles';
 import { white } from 'ansi-colors';
 
@@ -66,15 +66,32 @@ export default class Main extends React.Component {
               showLabel={false}
             >
 
-              <Scene key="tab1" tabBarLabel="首页" icon={TabIcon} tabIcon="home"
-                activeTintColor={'red'}
-
+              {/***********************/}
+              {/* 首页 */}
+              {/***********************/}
+              <Scene key="tab0" tabBarLabel="首页" icon={TabIcon} tabIcon="home"
               >
                 <Scene
                   key="home"
-                  component={Home}
+                  component={NewsListIndex}
                   // title="新闻列表"
                   initial={true}
+                  renderTitle={search}
+                  navigationBarStyle={mainStyle.newsListTab}
+                  navTransparent={false}    //导航栏是否透明
+                />
+              </Scene>
+
+              {/***********************/}
+              {/* 新闻 */}
+              {/***********************/}
+              <Scene key="tab1" tabBarLabel="新闻" icon={TabIcon} tabIcon="list-unordered" activeTintColor={'red'}
+              >
+                <Scene
+                  key="newList"
+                  component={NewsListIndex}
+                  // title="新闻列表"
+                  // initial={true}
                   renderTitle={search}
                   navigationBarStyle={mainStyle.newsListTab}
                   navTransparent={false}    //导航栏是否透明
@@ -87,11 +104,12 @@ export default class Main extends React.Component {
                   swipeEnabled={false}
                 />
               </Scene>
+
+              {/***********************/}
+              {/* 个人中心 */}
+              {/***********************/}
               {/* TabIcon */}
-              <Scene key="tab2"
-                tabBarLabel="我的"
-                icon={TabIcon}
-                tabIcon="person">
+              <Scene key="tab2" tabBarLabel="我的" icon={TabIcon} tabIcon="person">
                 <Scene
                   key="personal"
                   component={Personal}
