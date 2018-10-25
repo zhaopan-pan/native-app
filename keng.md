@@ -10,6 +10,18 @@
 ndex.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/  
 app/src/main/res/
 
+
+2、Execution failed for task ':app:bundleReleaseJsAndAssets'.
+                 > Process 'command 'cmd'' finished with non-z value 1  
+
+   解决办法：命令行执行 ./gradlew stop  后再构建
+
+
+3、Could not expand ZIP
+   
+   方法：gradlew clean 
+
+
 #########################
 2,修改app名称：res-->strings.xml
 
@@ -28,10 +40,6 @@ android:icon="@mipmap/jinghui"
                若出现：Warning: Failed child context type: Invalid child context `virtualizedCell.cellKey` of type `number` supplied to `CellRenderer`, expected `string`.
                则需要写成 index.toString()
 
-作者：ZPengs
-链接：https://www.jianshu.com/p/98c8f2a970eb
-來源：简书
-简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
 
 ###########################
 #######--组件使用--#########
